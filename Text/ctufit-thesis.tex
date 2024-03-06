@@ -1,0 +1,208 @@
+%% This is the ctufit-thesis example file. It is used to produce theses
+%% for submission to Czech Technical University, Faculty of Information Technology.
+%%
+%% Get the newest version from
+%% https://gitlab.fit.cvut.cz/theses-templates/FITthesis-LaTeX
+%%
+%%
+%% Copyright 2021, Eliska Sestakova and Ondrej Guth
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public Licenese, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%  https://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The current maintainer of this work is Ondrej Guth.
+%% Contact ondrej.guth@fit.cvut.cz for bug reports.
+%% Alternatively, submit bug reports into the tracker at
+%% https://gitlab.fit.cvut.cz/theses-templates/FITthesis-LaTeX/issues
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CLASS OPTIONS
+% language: czech/english/slovak
+% thesis type: bachelor/master/dissertation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[czech,bachelor,unicode]{template/ctufit-thesis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FILL IN THIS INFORMATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ctufittitle{Informační systém pro pneuservis} % replace with the title of your thesis
+\ctufitauthorfull{Jorge Zuňiga} % replace with your full name (first name(s) and then family name(s) / surname(s)) including academic degrees
+\ctufitauthorsurnames{Zuňiga} % replace with your surname(s) / family name(s)
+\ctufitauthorgivennames{Jorge} % replace with your first name(s) / given name(s)
+\ctufitsupervisor{Ing.\, Pavel Náplava, \,Ph.D. } % replace with name of your supervisor/advisor (include academic degrees)
+\ctufitdepartment{Katedra softwarového inženýrství} % replace with the department of your defence
+\ctufityear{2022} % replace with the year of your defence
+\ctufitdeclarationplace{Praze} % replace with the place where you sign the declaration
+\ctufitdeclarationdate{\today} % replace with the date of signature of the declaration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABSTRACT CZE & ENG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ctufitabstractCZE{Práce je zaměřená na informační systémy a jejich využití pro malé podniky. Hlavním cílem práce je provést analýzu pneuservisu Láva Design a následnou implementaci informačního systému na platformě Salesforce. Nejdříve se práce věnuje teorii informačních systémů, popisuje jejich typy, a speciálně se zaměřuje na CRM systémy. Poté popisuje obecnou agendu pneuservisů a využití CRM systémů v této oblasti. Dále je v práci provedena analýza pneuservisu Láva Design a sběr požadavků majitele. Na tomto základě je proveden návrh a implementace nového informačního systému na platformě Salesforce. Poté je provedeno testování tohoto systému. V poslední části probíhá ekonomicko-manažerské vyhodnocení přínosů a nákladů nového systému a jsou popsány možnosti dalších rozšíření.}
+\ctufitkeywordsCZE{Salesforce, CRM, zákazník, evidence zákazníků, pneuservis}
+
+\ctufitabstractENG{The~thesis is focused on information systems and their use for small businesses. The~main goal of this work is to perform an analysis of the~Láva Design tire service and the~subsequent implementation of an information system on the~Salesforce platform. First, the~work focuses on the~theory of information systems, describes their types, and specifically focuses on CRM systems. It then describes the~general agenda of tire service shops and the~use of CRM systems in this area. Next, an analysis of the~Láva Design tire service and a collection of the~owner's  requirements is performed. On this basis, the design and implementation of a new information system on the~Salesforce platform are made. Then, the~new system is tested. In the~last part, economic and managerial benefits and costs of the~new system are evaluated and the~possibilities of further extensions are described.}
+\ctufitkeywordsENG{Salesforce, CRM, customer, customer records, tire service}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END FILL IN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOMIZATION of this template
+% Skip this part or alter it if you know what you are doing.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{iftex}[2020/03/06]
+\iftutex % XeLaTeX and LuaLaTeX
+    \RequirePackage{ellipsis}[2020/05/22] %ellipsis workaround for XeLaTeX
+\else
+    \RequirePackage[utf8]{inputenc}[2018/08/11] %this file encoding
+    \RequirePackage{lmodern}[2009/10/30] % vector flavor of Computer Modern font
+\fi
+% hyperlinks
+\RequirePackage[pdfpagelayout=TwoPageRight,colorlinks=false,allcolors=decoration,pdfborder={0 0 0.1}]{hyperref}[2020-05-15]
+% uncomment the following to hide all hyperlinks
+% \RequirePackage[pdfpagelayout=TwoPageRight,hidelinks]{hyperref}[2020-05-15]
+\RequirePackage{pdfpages}[2020/01/28]
+\setcounter{secnumdepth}{4} % numbering sections; 4: subsubsection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOMIZATION of this template END
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+% DEMO CONTENTS SETTINGS
+% You may choose to modify this part.
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{dirtree}
+\usepackage{lipsum,tikz}
+\usepackage{csquotes}
+\usepackage[style=iso-numeric]{biblatex}
+\addbibresource{bib/bib-database.bib}
+\usepackage{listings} % typesetting of sources
+% \usepackage{minted} % typesetting of sources
+%%%%%%%%%%%%%%%%%%%%%%
+% My packages
+\usepackage{todonotes}
+\usepackage{placeins}
+\usepackage{rotating}
+\usepackage{xevlna}
+\usepackage{colortbl}
+\definecolor{backgroundgray}{RGB}{199, 219, 241} %CTU light blue
+%%%%%%%%%%%%%%%%%%%%%%
+%theorems, definitions, etc.
+\theoremstyle{plain}
+\newtheorem{theorem}{Věta}
+\newtheorem{lemma}[theorem]{Tvrzení}
+\newtheorem{corollary}[theorem]{Důsledek}
+\newtheorem{proposition}[theorem]{Návrh}
+\newtheorem{definition}[theorem]{Definice}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Příklad}
+\theoremstyle{remark}
+\newtheorem{note}[theorem]{Poznámka}
+\newtheorem*{note*}{Poznámka}
+\newtheorem{remark}[theorem]{Pozorování}
+\newtheorem*{remark*}{Pozorování}
+\numberwithin{theorem}{chapter}
+%theorems, definitions, etc. END
+%%%%%%%%%%%%%%%%%%%%%%
+% DEMO CONTENTS SETTINGS END
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document} 
+\frontmatter\frontmatterinit % do not remove these two commands
+\includepdf{zunigjor-assignment.pdf} % replace that file with your thesis assignment provided by study office
+\thispagestyle{empty}\cleardoublepage\maketitle % do not remove these three commands
+\imprintpage % do not remove this command
+\tableofcontents % do not remove this command
+%%%%%%%%%%%%%%%%%%%%%%
+% list of other contents: figures, tables, code listings, algorithms, etc.
+% add/remove commands accordingly
+%%%%%%%%%%%%%%%%%%%%%%
+\listoffigures % list of figures
+\begingroup
+\let\clearpage\relax
+\listoftables % list of tables
+% \lstlistoflistings % list of source code listings generated by the listings package
+% \listoflistings % list of source code listings generated by the minted package
+\endgroup
+%%%%%%%%%%%%%%%%%%%%%%
+% list of other contents END
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+% ACKNOWLEDGMENT
+% FILL IN / MODIFY
+% This is a place to thank people for helping you. It is common to thank your supervisor.
+%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgmentpage}
+	Především bych chtěl poděkovat vedoucímu mé práce, panu Ing.~Pavlu Náplavovi,~PhD. za cenné rady, postřehy a konzultace během tvorby této práce. 
+	Dále bych rád poděkoval Janu Loudovi za zprostředkovaní tématu práce a majiteli pneuservisu Láva Design za připravenost během schůzek.
+\end{acknowledgmentpage} 
+%%%%%%%%%%%%%%%%%%%
+% ACKNOWLEDGMENT END
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+% DECLARATION
+% FILL IN / MODIFY
+%%%%%%%%%%%%%%%%%%%
+% INSTRUCTIONS
+% ENG: choose one of approved texts of the declaration. DO NOT CREATE YOUR OWN. Find the approved texts at https://courses.fit.cvut.cz/SFE/download/index.html#_documents (document Declaration for FT in English)
+% CZE/SLO: Vyberte jedno z fakultou schvalenych prohlaseni. NEVKLADEJTE VLASTNI TEXT. Schvalena prohlaseni najdete zde: https://courses.fit.cvut.cz/SZZ/dokumenty/index.html#_dokumenty (prohlášení do ZP)
+\begin{declarationpage}
+Prohlašuji, že jsem předloženou práci vypracoval samostatně a že jsem uvedl veškeré
+použité informační zdroje v souladu s Metodickým pokynem o dodržování etických
+principů při přípravě vysokoškolských závěrečných prací.
+
+Beru na vědomí, že se na moji práci vztahují práva a povinnosti vyplývající ze zákona
+č. 121/2000 Sb., autorského zákona, ve znění pozdějších předpisů, zejména
+skutečnost, že České vysoké učení technické v Praze má právo na uzavření licenční
+smlouvy o užití této práce jako školního díla podle § 60 odst. 1 citovaného zákona.
+\end{declarationpage}
+%%%%%%%%%%%%%%%%%%%
+% DECLARATION END
+%%%%%%%%%%%%%%%%%%%
+\printabstractpage % do not remove this command
+%%%%%%%%%%%%%%%%%%%
+% ABBREVIATIONS
+% FILL IN / MODIFY
+% OR REMOVE ENTIRELY
+% List the abbreviations in lexicography order.
+%%%%%%%%%%%%%%%%%%%
+\include{chapters/seznam_zkratek}
+%%%%%%%%%%%%%%%%%%%
+% ABBREVIATIONS END
+%%%%%%%%%%%%%%%%%%%
+\mainmatter\mainmatterinit % do not remove these two commands
+%%%%%%%%%%%%%%%%%%%
+% THE THESIS
+% MODIFY ANYTHING BELOW THIS LINE
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+% Teoretická část
+%%%%%%%%%%%%%%%%%%%
+\include{chapters/1_úvod/úvod}
+\include{chapters/2_IS/informační_a_crm_systémy}
+\include{chapters/3_pneuservisy_a_CRM/pneuservisy_a_CRM}
+%%%%%%%%%%%%%%%%%%%
+% Praktická část
+%%%%%%%%%%%%%%%%%%%
+\include{chapters/4_analýza/analýza}
+\include{chapters/5_požadavky_na_řešení/požadavky_na_řešení}
+\include{chapters/6_návrh/návrh}
+\include{chapters/7_implementace/implementace}
+\include{chapters/8_testování/testovaní}
+\include{chapters/9_eko-mng_vyhodnocení/eko-mng_vyhodnocení}
+\include{chapters/10_závěr/závěr}
+%%%%%%%%%%%%%%%%%%%
+% Přílohy
+%%%%%%%%%%%%%%%%%%%
+\appendix\appendixinit % do not remove these two commands
+\include{chapters/11_appendix/medium}
+\backmatter % do not remove this command
+\printbibliography % print out the BibLaTeX-generated bibliography list
+%%%%%%%%%%%%%%%%%%%
+% Konec <3
+%%%%%%%%%%%%%%%%%%%
+\end{document}
